@@ -8,7 +8,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 //Require models
-var Comment = require('../models/Comment.js');
+var comment = require('../models/comment.js');
 var Article = require('../models/article.js');
 
 //index
@@ -172,10 +172,10 @@ router.post('/comment/:id', function(req, res) {
     body: content
   };
  
-  //using the Comment model, create a new comment
-  var newComment = new Comment(commentObj);
+  //using the comment model, create a new comment
+  var newcomment = new comment(commentObj);
 
-  newComment.save(function(err, doc) {
+  newcomment.save(function(err, doc) {
       if (err) {
           console.log(err);
       } else {

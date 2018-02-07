@@ -22,7 +22,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 //connecting to MongoDB
-mongoose.connect('mongodb://heroku_jxkjhg1v:6s68tem51mlionrj2sneb7b53c@ds127988.mlab.com:27988/heroku_jxkjhg1v');
+mongoose.connect('mongodb://heroku_h38q7b8q:hv1k0kh06dv5hhimvnkvgqoha7@ds225608.mlab.com:25608/heroku_h38q7b8q');
 
 //mongoose.connect('mongodb://localhost/scraped_news');
 

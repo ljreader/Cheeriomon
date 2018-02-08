@@ -24,7 +24,7 @@ In this assignment, you'll create a web app that lets users view and leave comme
 
 9. **NOTE**: If you want to earn complete credit for your work, you must use all six of these packages in your assignment.
 
-10. In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
+<!-- 10. In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
 
 11. Create a Heroku app in your project directory.
 
@@ -34,7 +34,7 @@ In this assignment, you'll create a web app that lets users view and leave comme
 
     * This command will add the free mLab provision to your project.
 
-13. When you go to connect your mongo database to mongoose, do so the following way:
+13. When you go to connect your mongo database to mongoose, do so the following way: -->
 
 ```js
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database

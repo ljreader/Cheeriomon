@@ -9,7 +9,7 @@ var cheerio = require('cheerio');
 
 //Require models
 var comment = require('../models/comment.js');
-var Article = require('../models/article.js');
+var article = require('../models/article.js');
 
 //index
 router.get('/', function(req, res) {
@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
 // A GET request to scrape the Verge website
 router.get('/scrape', function(req, res) {
     // First, we grab the body of the html with request
-    request('http://www.theverge.com/tech', function(error, response, html) {
+    request('http://www.usatoday.com/tech', function(error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         var titlesArray = [];
@@ -53,12 +53,12 @@ router.get('/scrape', function(req, res) {
                 titlesArray.push(result.title);
 
                 // only add the article if is not already there
-                Article.count({ title: result.title}, function (err, test){
+                article.count({ title: result.title}, function (err, test){
                     //if the test is 0, the entry is unique and good to save
                   if(test == 0){
 
                     //using Article model, create new object
-                    var entry = new Article (result);
+                    var entry = new article (result);
 
                     //save entry to mongodb
                     entry.save(function(err, doc) {
@@ -91,7 +91,7 @@ router.get('/scrape', function(req, res) {
 //this will grab every article an populate the DOM
 router.get('/articles', function(req, res) {
     //allows newer articles to be on top
-    Article.find().sort({_id: -1})
+    article.find().sort({_id: -1})
         //send to handlebars
         .exec(function(err, doc) {
             if(err){
@@ -135,7 +135,7 @@ router.get('/readArticle/:id', function(req, res){
   };
 
     // //find the article at the id
-    Article.findOne({ _id: articleId })
+    article.findOne({ _id: articleId })
       .populate('comment')
       .exec(function(err, doc){
       if(err){
@@ -181,13 +181,13 @@ router.post('/comment/:id', function(req, res) {
       } else {
           console.log(doc._id)
           console.log(articleId)
-          Article.findOneAndUpdate({ "_id": req.params.id }, {$push: {'comment':doc._id}}, {new: true})
+          article.findOneAndUpdate({ "_id": req.params.id }, {$push: {'comment':doc._id}}, {new: true})
             //execute everything
             .exec(function(err, doc) {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.redirect('/readArticle/' + articleId);
+                    res.redirect('/readerarticle/' + articleId);
                 }
             });
         }

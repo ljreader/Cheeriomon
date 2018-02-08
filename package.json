@@ -30,5 +30,8 @@
     "morgan": "^1.9.0",
     "path": "^0.12.7",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
   }
 }
